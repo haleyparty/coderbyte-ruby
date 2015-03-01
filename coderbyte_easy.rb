@@ -20,7 +20,23 @@ def FirstFactorial(num)
   sen = arr[0]
 end
 
-#LetterChanges
+def LetterChanges(str)
+
+  alphabet = ('a'..'z').to_a
+  vowels = ["a","e","i","o","u"]
+  str = str.split('')
+  
+  str = str.collect do |letter| 
+    alphabet.include?(letter) ? letter.next : letter
+  end
+  
+  str = str.collect do |letter| 
+    vowels.include?(letter) ? letter.upcase : letter
+  end
+  
+  str.join
+         
+end
 
 def SimpleAdding(num)
   (0...num).each do |i|
@@ -45,7 +61,21 @@ def LetterCapitalize(str)
          
 end
 
-#SimpleSymbols
+def SimpleSymbols(str)
+
+  letters = str.scan(/[A-Za-z]/)
+  count = 0
+  
+  str.split(//).each_cons(3) do |cons|
+    if cons.join =~ /\+[A-Za-z]\+/
+      count += 1
+    end
+  end
+  
+  return true if letters.length == count
+  return false
+         
+end
 
 def CheckNums(num1,num2)
   if num2 > num1
@@ -217,6 +247,37 @@ end
 
 #AdditivePersistence
 
-#MultiplicativePersistence
+# def MultiplicativePersistence(num)
+  
+#   arr = []
+#   count ||= 0
 
-#OffLineMinimum
+#   num.to_s.split(//).each do |i|
+#     arr << i.to_i
+#   end
+  
+#   new_num = arr.reduce(:*).to_s.split(//)
+
+#   while new_num.length > 1
+#     new_num = new_num.each {|i| }
+#   end
+         
+# end
+
+def OffLineMinimum(*args)
+  arr = args.to_a
+  
+  new_arr = []
+  temp_arr = []
+  
+  arr.each do |i|
+    if "1234567890".include?(i)
+      temp_arr << i
+    elsif i == "E"
+      temp_arr.sort!
+      new_arr << temp_arr.shift
+    end
+  end
+  
+  return new_arr
+end
